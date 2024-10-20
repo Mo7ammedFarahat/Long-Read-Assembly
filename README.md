@@ -12,7 +12,7 @@ Customized by: **Mohammed Farahat**, to be up and running on University of Cape 
 * [Dataset](#dataset)
 * [Part 1: Familiarize Ourselves With The Data](#part-1-familiarize-ourselves-with-the-data)
      * [Subset Our Input Data](#subset-our-input-data)
-     * [Now let's compare the data](#Now-lets-compare-the-data)
+     * [Data Comparison](#Now-lets-compare-the-data)
      
 
 
