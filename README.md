@@ -306,7 +306,7 @@ Yak won't work on our Jupyter instances, so create a slurm script that has 32 co
 <details>
 <summary>clipboard-question "Click here for the answer"</summary>
 
-    Here is one way to call yak in a `yak.sl` script...
+    Here is one way to call yak in a `yak.sbatch` script...
 
 ```bash
     #!/bin/bash
