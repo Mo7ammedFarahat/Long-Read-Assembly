@@ -218,43 +218,58 @@ We see a lot of *k*-mers missing and the histogram (frequency column) has a ton 
     
 
         ```bash
-        #!/bin/bash -e
-        
-        #SBATCH --account       nesi02659
-        #SBATCH --job-name      meryl_run
-        #SBATCH --cpus-per-task 32
-        #SBATCH --time          12:00:00
-        #SBATCH --mem           96G
-        #SBATCH --partition     milan
-        #SBATCH --output        slurmlogs/%x.%j.out
-        #SBATCH --error         slurmlogs/%x.%j.err
-        
-        
-        module purge
-        module load Merqury/1.3-Miniconda3
+        #!/bin/bash 
+
+        #SBATCH --job-name='meryl_run'
+        #SBATCH --cpus-per-task=32
+        #SBATCH --time=12:00:00
+        #SBATCH --mem=96G
+        #SBATCH --partition=Main
+        #SBATCH --output=testjob-%j-stdout.log
+        #SBATCH --error=testjob-%j-stderr.log
+
+
+        module load merqury/1.3
+        module load meryl/1.4.1
         export MERQURY=$(dirname $(which merqury.sh))
-        
+
         ## Create mat/pat/child DBs
         meryl count compress k=30 \
             threads=32 memory=96 \
             maternal.*fastq.gz \
             output maternal_compress.k30.meryl
-        
+
         meryl count compress k=30 \
             threads=32 memory=96 \
             paternal.*fastq.gz \
             output paternal_compress.k30.meryl
-        
+
         meryl count compress k=30 \
             threads=32 memory=96    \
             child.*fastq.gz output    \
             child_compress.k30.meryl
-        
+
         ## Create the hapmer DBs
         $MERQURY/trio/hapmers.sh \
-          maternal_compress.k30.meryl \
-          paternal_compress.k30.meryl \
-             child_compress.k30.meryl
+        maternal_compress.k30.meryl \
+        paternal_compress.k30.meryl \
+            child_compress.k30.meryl
         ```
 </details>
 
+#### Trio data: Yak
+
+Yak (Yet-Another Kmer Analyzer) is the kmer counter that we need for Hifiasm assemblies and to QC assemblies made with either assembler so let's learn about how to make yak dbs. 
+
+**In the Meryl section we subset R1, now subset R2 as well**
+
+
+```bash
+zcat /nesi/nobackup/nesi02659/LRA/resources/ilmn/pat/HG003_HiSeq30x_subsampled_R2.fastq.gz \
+    | head -n 20000000 \
+    | pigz > HG003_HiSeq30x_5M_reads_R2.fastq.gz &
+```  
+
+**Look up yak's github and figure out how to make a count/kmer db for this data**
+
+Yak won't work on our Jupyter instances, so create a slurm script that has 32 cores and 96GB of memory. That way it will work on our subset data and it will also work on full size data -- you'd just have to extend the time variable in slurm.
