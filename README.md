@@ -216,8 +216,7 @@ We see a lot of *k*-mers missing and the histogram (frequency column) has a ton 
     (Don't run this, it is slow! We have made these for you already.)
 
     
-
-        ```bash
+```bash
         #!/bin/bash 
 
         #SBATCH --job-name='meryl_run'
@@ -254,7 +253,7 @@ We see a lot of *k*-mers missing and the histogram (frequency column) has a ton 
         maternal_compress.k30.meryl \
         paternal_compress.k30.meryl \
             child_compress.k30.meryl
-        ```
+```
 </details>
 
 #### Trio data: Yak
