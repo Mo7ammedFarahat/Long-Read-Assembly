@@ -21,12 +21,12 @@ Customized by: **Mohammed Farahat**, to be up and running on University of Cape 
         * [Trio data: Yak](#trio-data-yak)
 * [Part 2: Assembly](#part-2-assembly)
     * [Exploring With Test Data](#Exploring-with-test-data)
-        * [Run Hifiasm With Test Data](#trio-data-meryl)
-        * [Introduction To GFA Files](#trio-data-yak)
-        * [View Hifiasm Test Assembly GFA in Bandage](#trio-data-yak)
-    * [Run Verkko With Test Data](#cleaning-data-for-assembly)
-    * [Running on Full Data Sets](#cleaning-data-for-assembly)
-    * [Building Graph Sense](#cleaning-data-for-assembly)
+        * [Run Hifiasm With Test Data](#[run-hifiasm-with-test-data)
+        * [Introduction To GFA Files](#introduction-to-gfa-files)
+        * [View Hifiasm Test Assembly GFA in Bandage](#view-hifiasm-test-assembly-gfa-in-bandage)
+    * [Run Verkko With Test Data](#run-verkko-with-test-data)
+    * [Running on Full Data Sets](#running-on-full-data-sets)
+    * [Building Graph Sense](#building-graph-sense)
 ## Ilifu HPC Configuration
 
 Ilifu is a regional node, known as a Tier II node, in a national infrastructure, and partly funded by the Department of Science and Technology (DST) through their Data-Intensive Research Initiative of South Africa (DIRISA).
