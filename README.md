@@ -1,4 +1,4 @@
-## BYOD workshop 21th-25th Oct 2024, Cape Town - South Africa
+## Human Pangenome BYOD workshop 21st-25th Oct 2024, Cape Town - South Africa
 
 Note: Material used to prepare for the workshop was extracted from https://genomicsaotearoa.github.io/long-read-assembly/
 
