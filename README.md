@@ -180,6 +180,38 @@ At the moment the easiest and most effective way to phase human assemblies is wi
 
 Today we want to use Meryl in the context of creating databases from PCR-free Illumina readsets. These can be used both during the assembly process and during the post-assembly QC. 
 
+
+#### Helpful Background
+
+Meryl can be used to create hapmer DBs (haplotype + k-mer), which can be used as input for tools like Verkko and Merqury. Hapmer DBs are constructed from the *k*-mers that a child inherits from one parent and not the other. These *k*-mers are useful for phasing assemblies because if an assembler has two very similar sequences, it can look for maternal-specific *k*-mers and paternal-specific *k*-mers and use those to determine which haplotype to assign to each sequence.
+
+<p align="center">
+<img src="https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/sequencing/meryl_venn.png?raw=true" width="350"/>
+</p>
+
+In the Venn diagram above, the maternal hapmer *k*-mers/DB are on the left-hand side (in the purple in red box). The paternal hapmer *k*-mers/DB are on the right-hand side (in the purple in blue box). 
+
+**Wait, what is phasing?**
+
+Phasing is the process of saying two things are on the same haplotype (<i>i.e.</i>, saying two blocks of sequence came from the maternal haplotype, or vice versa)
+
+One way you will hear us talk about phasing in this workshop is in the context of ultra long reads. In this case, we may have two heterozygous regions separated by a homozygous region. When an assembler is walking this graph, if there is no external information about haplotype, then the assembler doesn't have a way of knowing that certain blocks of sequence came from the same sequence. For example, in the bottom image, the assembler might walk from the top left block, into the homozygous block, and then down to the <i>bottom right</i> block, switching between the two haplotypes.
+
+However, if we can find a long read that maps to the top sequences in both, then we could say that these sequences come from the same haplotype. That is phasing.
+
+<p align="center">
+    <img src="https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/sequencing/ont_phasing.png?raw=true" width="550"/>
+</p>
+
+We can play a similar trick with parental data. If we find paternal markers in both sequences in the top, then we can say that they both come from the paternal haplotype. This is also phasing. 
+
+<p align="center">
+    <img src="https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/sequencing/trio_phasing2.png?raw=true" width="550"/>
+</p>
+
+
+#### Using Meryl
+
 **Make sure you are in the right directory**
 
 ```bash
