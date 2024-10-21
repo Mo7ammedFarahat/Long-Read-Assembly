@@ -602,6 +602,39 @@ Open the `assembly/1-buildGraph/hifi-resolved.gfa` file in Bandage. You will see
 
 Open the `assembly/5-untip/unitig-normal-connected-tip.gfa` file in Bandage. Now our three nodes have been resolved into one. 
 
+<details>
+<summary>question "Do we need to phase?"</summary>
+     
+    We just worked through test data that was HiFi only (Hifiasm) then HiFi + ONT UL (Verkko) so you'd be forgiven for thinking that for these assemblers you don't need phasing data. In truth, if the HiFi and ONT data could produce contigs that are chromosome-level in scale, then trios/Hi-C wouldn't be needed, but assemblers aren't there yet. 
+
+    Let's look at some example data from Hifiasm which was produced with only HiFi for the Eastern Narrow Mouth Toad (*Gastrophryne carolinensis*). Below is a Merqury kmer count plot for the primary haplotype from this assembly:
+    
+    **Hifiasm (primary) assembly without Purge Dups**
+
+    <p align="center">
+        <img src="https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/assembly/merqury_kmer_primary_only.png?raw=true" width="300"/>
+    </p>
+    This is the primary assembly of a diploid, so we'd like to see the red section have two peaks -- one for heterozygous positions and one for homozygous positions. This is because the primary would ideally represent all of the homozygous regions as well as one set of alleles for heterozygous regions. We'd also like to see almost no blue section (since the blue section represents regions that are represented twice in the assembly), as these mean that a region is being represented twice. Unfortunately there are a lot of kmers seen twice in the assembly. When purge dups (a tool that looks for false duplications based on coverage information) is run, it gets better:
+
+    **Hifiasm assembly with Purge Dups**
+
+    <p align="center">
+        <img src="https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/assembly/merqury_kmer_primary_only_purged.png?raw=true" width="300"/>
+    </p>
+    But you can see that even after purging duplications, there is a large blue area. Now look what happens when Hi-C phasing is used:
+
+    **Hifiasm assembly (one haplotype) with HiC phasing**
+    <p align="center">
+        <img src="https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/assembly/merqury_kmer_hap1.png?raw=true" width="300"/>
+    </p>  
+
+    The blue section reduces in size drastically! So what is happening here?
+
+    Without phasing data such as trio or Hi-C, Hifiasm will create an assembly graph as you'd expect. Then it will try and figure out what path to walk in order to create a primary and an alternate assembly. It does this by just picking one side of the bubbles it encounters when walking the graph and assigning those to the primary assembly. The other sides gets put in the alternate assembly. In very heterozygous genomes, or very heterozygous regions of a genome, the primary assembly can still retain haplotigs from the alternate allele because the regions may look very different (and therefore don't create a nice bubble in the graph), even though they are still just representing alternate alleles at the same locus. This can result in the same genomic region incorrectly being represented twice in the primary assembly, which we call a false duplication.
+
+    Verkko for its part, is more conservative. Once Verkko gets to a bubble that it doesn't know how to phase it just stops and you get a break in your assembly.
+</details>  
+
 ### Building Graph Sense
 
 We&rsquo;re going to open Bandage and look around. This is a demonstration, so
