@@ -247,42 +247,42 @@ We see a lot of *k*-mers missing and the histogram (frequency column) has a ton 
 
     
 ```bash
-        #!/bin/bash 
+#!/bin/bash 
 
-        #SBATCH --job-name='meryl_run'
-        #SBATCH --cpus-per-task=32
-        #SBATCH --time=12:00:00
-        #SBATCH --mem=96G
-        #SBATCH --partition=Main
-        #SBATCH --output=testjob-%j-stdout.log
-        #SBATCH --error=testjob-%j-stderr.log
+#SBATCH --job-name='meryl_run'
+#SBATCH --cpus-per-task=32
+#SBATCH --time=12:00:00
+#SBATCH --mem=96G
+#SBATCH --partition=Main
+#SBATCH --output=testjob-%j-stdout.log
+#SBATCH --error=testjob-%j-stderr.log
 
 
-        module load merqury/1.3
-        module load meryl/1.4.1
-        export MERQURY=$(dirname $(which merqury.sh))
+module load merqury/1.3
+module load meryl/1.4.1
+export MERQURY=$(dirname $(which merqury.sh))
 
-        ## Create mat/pat/child DBs
-        meryl count compress k=30 \
-            threads=32 memory=96 \
-            maternal.*fastq.gz \
-            output maternal_compress.k30.meryl
+## Create mat/pat/child DBs
+meryl count compress k=30 \
+    threads=32 memory=96 \
+    maternal.*fastq.gz \
+    output maternal_compress.k30.meryl
 
-        meryl count compress k=30 \
-            threads=32 memory=96 \
-            paternal.*fastq.gz \
-            output paternal_compress.k30.meryl
+meryl count compress k=30 \
+    threads=32 memory=96 \
+    paternal.*fastq.gz \
+    output paternal_compress.k30.meryl
 
-        meryl count compress k=30 \
-            threads=32 memory=96    \
-            child.*fastq.gz output    \
-            child_compress.k30.meryl
+meryl count compress k=30 \
+    threads=32 memory=96    \
+    child.*fastq.gz output    \
+    child_compress.k30.meryl
 
-        ## Create the hapmer DBs
-        $MERQURY/trio/hapmers.sh \
-        maternal_compress.k30.meryl \
-        paternal_compress.k30.meryl \
-            child_compress.k30.meryl
+## Create the hapmer DBs
+$MERQURY/trio/hapmers.sh \
+maternal_compress.k30.meryl \
+paternal_compress.k30.meryl \
+    child_compress.k30.meryl
 ```
 </details>
 
@@ -309,29 +309,29 @@ Yak won't work on our Jupyter instances, so create a slurm script that has 32 co
     Here is one way to call yak in a `yak.sbatch` script...
 
 ```bash
-    #!/bin/bash
+#!/bin/bash
 
 
-    #SBATCH --job-name='yak_run'
-    #SBATCH --cpus-per-task=32
-    #SBATCH --time=00:10:00
-    #SBATCH --mem=100G
-    #SBATCH --partition=Main
-    #SBATCH --output=testjob-%j-stdout.log
-    #SBATCH --error=testjob-%j-stderr.log
+#SBATCH --job-name='yak_run'
+#SBATCH --cpus-per-task=32
+#SBATCH --time=00:10:00
+#SBATCH --mem=100G
+#SBATCH --partition=Main
+#SBATCH --output=testjob-%j-stdout.log
+#SBATCH --error=testjob-%j-stderr.log
 
-    module load anaconda3
-    conda activate /users/mohammedfarahat/miniconda3/envs/refgraph
-
-
+module load anaconda3
+conda activate /users/mohammedfarahat/miniconda3/envs/refgraph
 
 
-    yak count \
-        -t32 \
-        -b37 \
-        -o HG003_subset.yak \
-        <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz) \
-        <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz)
+
+
+yak count \
+    -t32 \
+    -b37 \
+    -o HG003_subset.yak \
+    <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz) \
+    <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz)
 
 ``` 
 
