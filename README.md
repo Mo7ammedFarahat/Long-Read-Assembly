@@ -17,7 +17,7 @@ Customized by: **Mohammed Farahat**, to be up and running on University of Cape 
         * [PacBio Adapter Trimming](#pacBio-adapter-trimming)
         * [ONT Read Length Filtering](#ont-read-length-filtering)
     * [Phasing Data](#phasing-data)
-        * [Trio data: Meryl](#trio-data-meryl)
+        * [Trio data: Meryl](#trio-data:meryl)
         * [Trio data: Yak](#trio-data-yak)
 
 ## Ilifu HPC Configuration
@@ -264,7 +264,7 @@ Yak (Yet-Another Kmer Analyzer) is the kmer counter that we need for Hifiasm ass
 
 
 ```bash
-zcat /nesi/nobackup/nesi02659/LRA/resources/ilmn/pat/HG003_HiSeq30x_subsampled_R2.fastq.gz \
+zcat /cbio/projects/037/mohammed/T2T/HG002/LRA/resources/ilmn/pat/HG003_HiSeq30x_subsampled_R2.fastq.gz \
     | head -n 20000000 \
     | pigz > HG003_HiSeq30x_5M_reads_R2.fastq.gz &
 ```  
@@ -272,3 +272,35 @@ zcat /nesi/nobackup/nesi02659/LRA/resources/ilmn/pat/HG003_HiSeq30x_subsampled_R
 **Look up yak's github and figure out how to make a count/kmer db for this data**
 
 Yak won't work on our Jupyter instances, so create a slurm script that has 32 cores and 96GB of memory. That way it will work on our subset data and it will also work on full size data -- you'd just have to extend the time variable in slurm.
+
+<details>
+<summary>clipboard-question "Click here for the answer"</summary>
+
+    Here is one way to call yak in a `yak.sl` script...
+
+```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      yak_run
+    #SBATCH --cpus-per-task 32
+    #SBATCH --time          00:10:00
+    #SBATCH --mem           96G
+    #SBATCH --partition     milan
+    #SBATCH --output        slurmlogs/%x.%j.out
+    #SBATCH --error         slurmlogs/%x.%j.err
+    
+    
+    module purge
+    module load yak/0.1
+    
+    yak count \
+        -t32 \
+        -b37 \
+        -o HG003_subset.yak \
+         <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz) \
+         <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz)
+``` 
+
+    Notice that for paired-end reads we have to stream both reads to yak twice!
+</details>
