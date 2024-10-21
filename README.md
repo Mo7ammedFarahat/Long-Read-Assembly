@@ -50,6 +50,8 @@ username@slurm-login:~$ mashmap --version
 3.1.3
 ```
 ---
+
+
 ## Dataset
 
   In this workshop we will be using data from HG002, which is a reference sample from the [Genome In A Bottle (GIAB)](https://www.nist.gov/programs-projects/genome-bottle) consortium. The GIAB project releases benchmark data for genomic characterization, and you may have seen their benchmark variant calls and regions out in the wild. As part of their benchmarking material generation, they release datasets for their reference samples. We will be using those in this workshop.
@@ -279,28 +281,34 @@ Yak won't work on our Jupyter instances, so create a slurm script that has 32 co
     Here is one way to call yak in a `yak.sl` script...
 
 ```bash
-    #!/bin/bash -e
-    
-    #SBATCH --account       nesi02659
-    #SBATCH --job-name      yak_run
-    #SBATCH --cpus-per-task 32
-    #SBATCH --time          00:10:00
-    #SBATCH --mem           96G
-    #SBATCH --partition     milan
-    #SBATCH --output        slurmlogs/%x.%j.out
-    #SBATCH --error         slurmlogs/%x.%j.err
-    
-    
-    module purge
-    module load yak/0.1
-    
+    #!/bin/bash
+
+
+    #SBATCH --job-name='yak_run'
+    #SBATCH --cpus-per-task=32
+    #SBATCH --time=00:10:00
+    #SBATCH --mem=100G
+    #SBATCH --partition=Main
+    #SBATCH --output=testjob-%j-stdout.log
+    #SBATCH --error=testjob-%j-stderr.log
+
+    module load anaconda3
+    conda activate /users/mohammedfarahat/miniconda3/envs/refgraph
+
+
+
+
     yak count \
         -t32 \
         -b37 \
         -o HG003_subset.yak \
-         <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz) \
-         <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz)
+        <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz) \
+        <(zcat HG003_HiSeq30x_5M_reads_R*.fastq.gz)
+
 ``` 
 
     Notice that for paired-end reads we have to stream both reads to yak twice!
 </details>
+
+When you are done you get out a non-human readable file. It doesn't need to be compressed or decompressed, and nothing else needs to be done in order to use it.
+
