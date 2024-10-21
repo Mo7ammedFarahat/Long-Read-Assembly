@@ -392,7 +392,7 @@ Given that Hi-C ligates molecules that are proximate (nearby) to each other, it 
 </details>
 
 <details>
-<summary>"So why wouldn't you always use trio data for phasing?"</summary>
+<summary>So why wouldn't you always use trio data for phasing?</summary>
 
     It can be hard to get trio data. If a sample has already been collected it may be hard to go back and identify the parents and collect sample from them. In non-human samples, trios can also be difficult particularly with samples taken from the wild. 
 </details>
@@ -613,7 +613,9 @@ sshfs username@transfer.ilifu.ac.za:/path/to/your/files/on/ilifu .
     3. Load the Bandage module with `module load Bandage`
     4. Type `Bandage &` to start Bandage
 
-    
+<p align="center">
+    <img src="https://github.com/Mo7ammedFarahat/Long-Read-Assembly/blob/main/bandage_vdt.png" width="300"/>
+</p>  
     **Load a unitig GFA**
     
     1. Click the *File* dropdown then *Load Graph*
