@@ -372,6 +372,52 @@ yak count \
 
 When you are done you get out a non-human readable file. It doesn't need to be compressed or decompressed, and nothing else needs to be done in order to use it.
 
+**Closing remarks on yak**
+
+* If you have Illumina data for an entire trio (which we do), then you can use yak to make yak DBs for each parent separately to use hifiasm for trio assembly or yak trioeval for quality control (more on that later)
+* You don't need to homopolymer compress yak dbs
+* There is no need to create separate dbs for assembly and for QC
+* yak can perform a variety of assembly QC tasks (as we will see) but it isn't really designed to play around with kmers like Meryl is
+
+### Hi-C
+Hi-C is a proximity ligation method. It takes intact chromatin and locks it in place, cuts up the DNA, ligates strands that are nearby and then makes libraries from them. It's easiest to just take a look at a cartoon of the process.
+![Hi-C Library Flow](https://github.com/human-pangenomics/hprc-tutorials/blob/GA-workshop/assembly/genomics_aotearoa/images/sequencing/hi-c-flow-2.png?raw=true)
+
+Given that Hi-C ligates molecules that are proximate (nearby) to each other, it can be used for spatial genomics applications. In assembly, we take advantage of the fact that most nearby molecules are on the same strand (or haplotype) of DNA. 
+
+<details>
+<summary>What are the advantages of trio phasing over Hi-C?</summary>
+
+    Trio data is great for phasing because you can assign haplotypes to maternal and paternal bins. This has the added benefit of assigning all maternal contigs to the same assembly. Hi-C ensure that an entire chromosome is phased into one haplotype, but across chromosomes the assignment is random. 
+</details>
+
+<details>
+<summary>"So why wouldn't you always use trio data for phasing?"</summary>
+
+    It can be hard to get trio data. If a sample has already been collected it may be hard to go back and identify the parents and collect sample from them. In non-human samples, trios can also be difficult particularly with samples taken from the wild. 
+</details>
+
+<details>
+<summary>Are there any difficulties in preparing Hi-C data?</summary>
+
+    Yes! As you can see in the cartoon above Hi-C relies on having intact chromatin as an input, which means it needs whole, non-lysed cells. This means that cell lines are an excellent input source, but frozen blood is less good, for instance.
+</details>
+
+### Other (Phasing) Datatypes
+We should also mention that there are other datatypes that can be used for phasing, though they are less common.
+
+**Pore-C**  
+Pore-C is a variant of Hi-C which retains the chromatin conformation capture aspect, but the sequencing is done on ONT. This allows long-read sequencing of concatemers. Where Hi-C typically has at most one "contact" per read, Pore-C can have many contacts per read. The libraries also do not need to be amplified, so Pore-C reads can carry base modification calls. 
+
+**StrandSeq**  
+StrandSeq is a technique that creates sparse Illumina datasets that are both cell- and strand-specific. Cell specificity is achieved by putting one cell per well into 384-well plates (often multiple). Strand specificity is achieved through selective fragmentation of nascent strands. (During DNA replication, BrdU is incorporated exclusively into nascent DNA strands. In the library preparation the BrdU strand is fragmented and only the other strand amplifies.) This strand specificity gives another way to identify haplotype-specific kmers and use them during assembly phasing.
+
+*If you are interested in these phasing approaches, you can read more about them in the following articles:*
+
+    - Lorig-Roach, Ryan, et al. "Phased nanopore assembly with Shasta and modular graph phasing with GFAse." *bioRxiv* (2023): 2023-02.
+    
+    - Porubsky, David, et al. "Fully phased human genome assembly without parental data using single-cell strand sequencing and long reads." *Nature biotechnology* 39.3 (2021): 302-308.
+
 ## Part 2: Assembly
  ***Here is a rundown of what we will do today:***
 
