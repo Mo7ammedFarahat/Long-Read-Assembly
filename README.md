@@ -359,7 +359,7 @@ In this section we will go over the rough outline of Verkko's approach to assemb
 
 Both Verkko and Hifiasm can use a variety of data sources:
 
-!!! quote ""
+
 
 * PacBio HiFi: >10kbp, around 99.9% accuracy
 * Oxford Nanopore Ultralong: >100kb, around 97% accuracy
