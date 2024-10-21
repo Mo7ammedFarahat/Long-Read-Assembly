@@ -614,7 +614,7 @@ sshfs username@transfer.ilifu.ac.za:/path/to/your/files/on/ilifu .
     4. Type `Bandage &` to start Bandage
 
 <p align="center">
-    <img src="https://github.com/Mo7ammedFarahat/Long-Read-Assembly/blob/main/bandage_vdt.png" width="300"/>
+    <img src="https://github.com/Mo7ammedFarahat/Long-Read-Assembly/blob/main/bandage_vdt.png" width="500"/>
 </p>  
     **Load a unitig GFA**
     
