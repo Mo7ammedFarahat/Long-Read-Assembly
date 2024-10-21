@@ -340,7 +340,7 @@ Yak won't work on our Jupyter instances, so create a slurm script that has 32 co
 
 When you are done you get out a non-human readable file. It doesn't need to be compressed or decompressed, and nothing else needs to be done in order to use it.
 
-## Assembly
+## Part 2: Assembly
  ***Here is a rundown of what we will do today:***
 
     * Learn about how Verkko creates assemblies
