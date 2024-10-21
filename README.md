@@ -41,6 +41,13 @@ Ilifu is using Slurm as a job scheduling system.
 ### Ilifu modules
 Some of the tools required for this workshop are already installed as modules on ilifu, to display the available modules use `module avail` and to load a module use `module load tool/version`.
 
+**Compute-node**
+I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps, like
+
+```
+srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
+```
+
 ### Conda environment
 For the tools that are not preinstalled on ilifu, I have created a conda env that contains all the required tools and packages you will need. 
 
