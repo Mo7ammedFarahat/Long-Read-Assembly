@@ -17,8 +17,8 @@ Customized by: **Mohammed Farahat**, to be up and running on University of Cape 
         * [PacBio Adapter Trimming](#pacBio-adapter-trimming)
         * [ONT Read Length Filtering](#ont-read-length-filtering)
     * [Phasing Data](#phasing-data)
-        * [Trio data: Meryl](#trio-data:meryl)
-        * [Trio data: Yak](#trio-data:yak)
+        * [Trio data: Meryl](#trio-data:-meryl)
+        * [Trio data: Yak](#trio-data:-yak)
 
 ## Ilifu HPC Configuration
 
