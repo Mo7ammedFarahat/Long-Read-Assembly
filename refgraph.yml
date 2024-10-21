@@ -1,0 +1,6 @@
+name: your_env_name
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+prefix: /users/mohammedfarahat/miniconda3/envs/your_env_name
