@@ -358,7 +358,13 @@ Yak won't work on our Jupyter instances, so create a slurm script that has 32 co
 #SBATCH --error=testjob-%j-stderr.log
 
 module load anaconda3
-conda activate /users/mohammedfarahat/miniconda3/envs/refgraph
+conda activate refgraph
+
+#Export Paths
+export PATH=/cbio/bin:$PATH
+
+export PATH=/cbio/soft:$PATH
+
 
 
 
@@ -688,7 +694,12 @@ And then paste in the following **(DO NOT FORGOT TO CHANGE CONDA ENV PATH TO YOU
 
 
 module load anaconda3
-conda activate /users/mohammedfarahat/miniconda3/envs/refgraph
+conda activate refgraph
+
+#Export Paths
+export PATH=/cbio/bin:$PATH
+
+export PATH=/cbio/soft:$PATH
 
 
 ## run verkko
