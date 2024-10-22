@@ -41,12 +41,7 @@ Ilifu is using Slurm as a job scheduling system.
 ### Ilifu modules
 Some of the tools required for this workshop are already installed as modules on ilifu, to display the available modules use `module avail` and to load a module use `module load tool/version`.
 
-**Compute-node**
-I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps, like
 
-```
-srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
-```
 
 ### Conda environment
 For the tools that are not preinstalled on ilifu, I have created a conda env that contains all the required tools and packages you will need. 
@@ -56,8 +51,9 @@ Or use it directly from the workshop project dir `/cbio/projects/037/mohammed/co
 
 To create the environment:
 ```bash
-username@slurm-login:~$ conda env create -f refgraph.yml
-username@slurm-login:~$ conda activate refgraph
+username@slurm-login:~$ sinteractive
+username@compute-001:~$ conda env create -f refgraph.yml
+username@compute-001:~$ conda activate refgraph
 ```
 Now, you can check one of the tools that we will use later, like `mashmap`:
 ```bash
@@ -78,7 +74,12 @@ export PATH=/cbio/soft:$PATH
 ```
 
 ---
+**Compute-node**
+I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps, like
 
+```
+srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
+```
 
 ## Dataset
 
