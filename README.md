@@ -42,7 +42,17 @@ Ilifu is using Slurm as a job scheduling system.
 Some of the tools required for this workshop are already installed as modules on ilifu, to display the available modules use `module avail` and to load a module use `module load tool/version`.
 
 
+**Compute-node**
+I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps.
 
+```
+srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
+```
+
+Once you got the resource, What we need now is:
+* Create and activate the `refgraph` conda env in the compute-node
+* Export the two paths as in the following step.
+---
 ### Conda environment
 For the tools that are not preinstalled on ilifu, I have created a conda env that contains all the required tools and packages you will need. 
 
@@ -51,22 +61,13 @@ Or use it directly from the workshop project dir `/cbio/projects/037/mohammed/co
 
 To create the environment:
 ```bash
-username@slurm-login:~$ sinteractive
-username@compute-001:~$ module load anaconda3
-username@compute-001:~$ conda env create -f refgraph.yml
-username@compute-001:~$ conda activate refgraph
-```
-Now, you can check one of the tools that we will use later, like `mashmap`:
-```bash
-username@slurm-login:~$ mashmap --version
-3.1.3
-```
-To get your conda env path (needed later for the scripts):
-```
-conda env list
+username@compute-xxx:~$ module load anaconda3
+username@compute-xxx:~$ conda env create -f refgraph.yml
+username@compute-xxx:~$ conda activate refgraph
 ```
 
-Some tools might be found on `\cbio\soft` and `\cbio\bin\`, you need to add these paths to your account
+
+Some tools might be found on `\cbio\soft` and `\cbio\bin\`, **you need to add these paths to the compute-node**
 ```
 export PATH=/cbio/bin:$PATH
 ```
@@ -74,17 +75,17 @@ export PATH=/cbio/bin:$PATH
 export PATH=/cbio/soft:$PATH
 ```
 
----
-**Compute-node**
-I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps, **(Activate the `refgraph` conda env in the compute-node you will get only after creating and exporting the two paths in the earlier step)**
-
+Now let's check that the conda env and the paths are working fine:
+```bash
+username@compute-xxx:~$ mashmap --version
+3.1.3
 ```
-srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
 ```
+username@compute-xxx:~$ which verkko
+username@compute-xxx:~$ /cbio/bin/verkko
+```
+As you see now you have the tools from PATHs and the tools installed in the conda env.
 
-Once you got the resource, active the conda env before working.
-
----
 ## Dataset
 
   In this workshop we will be using data from HG002, which is a reference sample from the [Genome In A Bottle (GIAB)](https://www.nist.gov/programs-projects/genome-bottle) consortium. The GIAB project releases benchmark data for genomic characterization, and you may have seen their benchmark variant calls and regions out in the wild. As part of their benchmarking material generation, they release datasets for their reference samples. We will be using those in this workshop.
