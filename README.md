@@ -76,11 +76,12 @@ export PATH=/cbio/soft:$PATH
 
 ---
 **Compute-node**
-I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps, like
+I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps, **(Activate the `refgraph` conda env in the compute-node you will get only after creating and exporting the two paths in the earlier step)**
 
 ```
 srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
 ```
+Once you got the resource, active the conda env before working.
 ---
 ## Dataset
 
