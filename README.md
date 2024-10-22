@@ -52,6 +52,7 @@ Or use it directly from the workshop project dir `/cbio/projects/037/mohammed/co
 To create the environment:
 ```bash
 username@slurm-login:~$ sinteractive
+username@compute-001:~$ module load anaconda3
 username@compute-001:~$ conda env create -f refgraph.yml
 username@compute-001:~$ conda activate refgraph
 ```
