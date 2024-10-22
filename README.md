@@ -81,7 +81,9 @@ I recommend to reserve a compute-node to run the `bash` script and keep it alive
 ```
 srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
 ```
+
 Once you got the resource, active the conda env before working.
+
 ---
 ## Dataset
 
