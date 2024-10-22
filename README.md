@@ -609,6 +609,7 @@ awk '/^S/{print ">"$2;print $3}' \
 
 #### View Hifiasm Test Assembly GFA in Bandage
 **This is OPTIONAL (in your own time)**  
+  
 We are going to take a look at the assembly GFA file in a browser called Bandage. Bandage provides a way to visualize something called unitig graphs.
 
 !!! jupyter "Start Bandage" OR copy the files to your local machine using `scp` or mount it using `sshfs`
