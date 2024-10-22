@@ -62,7 +62,7 @@ Or use it directly from the workshop project dir `/cbio/projects/037/mohammed/co
 To create the environment:
 ```bash
 username@compute-xxx:~$ module load anaconda3
-username@compute-xxx:~$ conda env create -f refgraph.yml
+username@compute-xxx:~$ conda env create -f /cbio/projects/037/mohammed/condaEnv/refgraph.yml
 username@compute-xxx:~$ conda activate refgraph
 ```
 
