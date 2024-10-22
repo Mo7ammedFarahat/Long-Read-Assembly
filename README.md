@@ -80,7 +80,7 @@ I recommend to reserve a compute-node to run the `bash` script and keep it alive
 ```
 srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
 ```
-
+---
 ## Dataset
 
   In this workshop we will be using data from HG002, which is a reference sample from the [Genome In A Bottle (GIAB)](https://www.nist.gov/programs-projects/genome-bottle) consortium. The GIAB project releases benchmark data for genomic characterization, and you may have seen their benchmark variant calls and regions out in the wild. As part of their benchmarking material generation, they release datasets for their reference samples. We will be using those in this workshop.
