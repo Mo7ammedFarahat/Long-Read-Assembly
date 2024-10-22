@@ -22,7 +22,7 @@ Customized by: **Mohammed Farahat**, to be up and running on University of Cape 
 * [Part 2: Assembly](#part-2-assembly)
     * [Theoretical Walkthrough Of The Assembly Process](#theoretical-walkthrough-of-the-assembly-process)
     * [Exploring With Test Data](#Exploring-with-test-data)
-        * [Run Hifiasm With Test Data](#[run-hifiasm-with-test-data)
+        * [Run Hifiasm With Test Data](#run-hifiasm-with-test-data)
         * [Introduction To GFA Files](#introduction-to-gfa-files)
         * [View Hifiasm Test Assembly GFA in Bandage](#view-hifiasm-test-assembly-gfa-in-bandage)
     * [Run Verkko With Test Data](#run-verkko-with-test-data)
