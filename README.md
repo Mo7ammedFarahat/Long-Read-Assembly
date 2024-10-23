@@ -52,6 +52,13 @@ srun --time=24:00:00 --mem=60G --cpus-per-task=32 --pty bash
 Once you got the resource, What we need now is:
 * Create and activate the `refgraph` conda env in the compute-node
 * Export the two paths as in the following step.
+
+Note: if it takes a while to get the resources, you can ask for interactive job **only to install conda env**, like:
+```
+sinteractive
+```
+as you see now your account changed from `username@slurm-login` to `username@compute-001`, that's the shared resources that you can run your light jobs, so let's create the conda on it while waiting the other resources to run the other tasks there.
+
 ---
 ### Conda environment
 For the tools that are not preinstalled on ilifu, I have created a conda env that contains all the required tools and packages you will need. 
