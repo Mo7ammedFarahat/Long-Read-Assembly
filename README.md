@@ -46,7 +46,7 @@ Some of the tools required for this workshop are already installed as modules on
 I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps.
 
 ```
-srun --time=48:00:00 --mem=60G --cpus-per-task=32 --pty bash
+srun --time=24:00:00 --mem=60G --cpus-per-task=32 --pty bash
 ```
 
 Once you got the resource, What we need now is:
@@ -852,7 +852,7 @@ Verkko is written as a shell wrapper around a Snakemake pipeline. This has the a
 | **Step**            | **CPUs** | **Shards** | **Time/Shard (est)** | **Total CPU Hours** |
 |---------------------|----------|------------|----------------------|---------------------|
 | pre overlap         | 24       | 1          | 3                    | 72                  |
-| overlap             | 8        | 600        | 1                    | 4800                |
+| overlap             | 8        | 600        | 1                    | 2400                |
 | create graph        | 80       | 1          | 13                   | 1040                |
 | graph aligner       | 12       | 100        | 2                    | 2400                |
 | complete asm        | 64       | 1          | 12                   | 768                 |
