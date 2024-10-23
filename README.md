@@ -46,18 +46,11 @@ Some of the tools required for this workshop are already installed as modules on
 I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps.
 
 ```
-srun --time=24:00:00 --mem=60G --cpus-per-task=32 --pty bash
+srun --time=12:00:00 --mem=60G --account=b188-cbio-037-ag --reservation=refgraph --cpus-per-task=32 --pty bash
 ```
 
-Once you got the resource, What we need now is:
-* Create and activate the `refgraph` conda env in the compute-node
-* Export the two paths as in the following step.
+**It will take a while to allocate the reourses**, so leave it and open another terminal window and continute.
 
-Note: if it takes a while to get the resources, you can ask for interactive job **only to install conda env**, like:
-```
-sinteractive
-```
-as you see now your account changed from `username@slurm-login` to `username@compute-001`, that's the shared resources that you can run your light jobs, so let's create the conda on it while waiting the other resources to run the other tasks there.
 
 ---
 ### Conda environment
@@ -66,11 +59,18 @@ For the tools that are not preinstalled on ilifu, I have created a conda env tha
 Download the yml file from here [refgraph.yml](https://github.com/Mo7ammedFarahat/Long-Read-Assembly/blob/main/refgraph.yml)  
 Or use it directly from the workshop project dir `/cbio/projects/037/mohammed/condaEnv/refgraph.yml`
 
+First, ask for interactive job **only to install conda env**, like:
+```
+sinteractive
+```
+as you see now your account changed from `username@slurm-login` to `username@compute-001`, that's the shared resources that you can run your light jobs, so let's create the conda on it while waiting the other resources to run the other tasks there.
+
+
 To create the environment:
 ```bash
-username@compute-xxx:~$ module load anaconda3
-username@compute-xxx:~$ conda env create -f /cbio/projects/037/mohammed/condaEnv/refgraph.yml
-username@compute-xxx:~$ conda activate refgraph
+username@compute-001:~$ module load anaconda3
+username@compute-001:~$ conda env create -f /cbio/projects/037/mohammed/condaEnv/refgraph.yml
+username@compute-001:~$ conda activate refgraph
 ```
 
 
@@ -84,15 +84,28 @@ export PATH=/cbio/soft:$PATH
 
 Now let's check that the conda env and the paths are working fine:
 ```bash
-username@compute-xxx:~$ mashmap --version
+username@compute-001:~$ mashmap --version
 3.1.3
 ```
 ```
-username@compute-xxx:~$ which verkko
-username@compute-xxx:~$ /cbio/bin/verkko
+username@compute-001:~$ which verkko
+username@compute-001:~$ /cbio/bin/verkko
 ```
 As you see now you have the tools from PATHs and the tools installed in the conda env.
+---
 
+Now, go back to the previous **window where you asked for resources**, Once you got the resource, What we need now is:
+* Activate the `refgraph` conda env in that compute-node (After you create it from the next step)
+* * Export the two paths again as in the following step.
+```
+username@compute-xxx:~$ conda activate refgraph
+username@compute-xxx:~$ export PATH=/cbio/bin:$PATH
+username@compute-xxx:~$ export PATH=/cbio/soft:$PATH
+```
+You can also check again `which hapmap2` and `which verkko`.
+
+
+---
 ## Dataset
 
   In this workshop we will be using data from HG002, which is a reference sample from the [Genome In A Bottle (GIAB)](https://www.nist.gov/programs-projects/genome-bottle) consortium. The GIAB project releases benchmark data for genomic characterization, and you may have seen their benchmark variant calls and regions out in the wild. As part of their benchmarking material generation, they release datasets for their reference samples. We will be using those in this workshop.
