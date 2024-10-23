@@ -46,7 +46,7 @@ Some of the tools required for this workshop are already installed as modules on
 I recommend to reserve a compute-node to run the `bash` script and keep it alive for all the steps.
 
 ```
-srun --time=12:00:00 --mem=60G --account=b188-cbio-037-ag --reservation=refgraph --cpus-per-task=32 --pty bash
+srun --time=4:00:00 --mem=60G --account=b188-cbio-037-ag --reservation=refgraph --cpus-per-task=32 --pty bash
 ```
 
 **It will take a while to allocate the reourses**, so leave it and open another terminal window and continute.
