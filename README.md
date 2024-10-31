@@ -2,7 +2,7 @@
 
 Note: Material used to prepare for the workshop was extracted from [HPRC Tutorial](https://github.com/human-pangenomics/hprc-tutorials/tree/GA-workshop)
 
-Customized by: **Mohammed Farahat**, to be up and running on University of Cape Town HPC (ilifu)
+Prepared by: **Mohammed Farahat**, to be up and running on University of Cape Town HPC (ilifu)
 
 ## Table of Contents
 
